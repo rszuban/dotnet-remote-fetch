@@ -67,23 +67,12 @@ namespace RemoteFetch.Classes
                         FetchItemValue fetchItemValue = new FetchItemValue { ValueDateTime = dateTimeNow, Value = fetchedValue };
                         Console.WriteLine($"Value of {fetchItem.ItemName} is {fetchItemValue.Value}.");
 
-
                         if (fetchItem.FetchItemValues == null)
                         {
                             fetchItem.FetchItemValues = new List<FetchItemValue>();
                         }
 
                         fetchItem.FetchItemValues.Add(fetchItemValue);
-
-
-                        //using (FetchUnitDbContext context = new FetchUnitDbContext())
-                        //{
-                        //    //context.Update(fetchItem);
-                        //    context.Upsert()
-                        //    context.Add<FetchItemValue>(fetchItemValue);
-                        //    context.SaveChanges();
-                        //}
-
                     }
 
                 }

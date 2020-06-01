@@ -6,7 +6,14 @@ namespace RemoteFetch.Classes
 {
     class FetchScheduler
     {
+        private readonly FetchExecutor _fetchExecutor;
+
         public string datetimeFormat = "g";
+
+        public FetchScheduler(FetchExecutor fetchExecutor)
+        {
+            _fetchExecutor = fetchExecutor;
+        }
 
         public DateTime GetNextOccurence(FetchUnit[] fetchUnits, DateTime dateTimeNow)
         {
@@ -36,8 +43,7 @@ namespace RemoteFetch.Classes
                 if (dateTimeNow.ToString(datetimeFormat) == fetchUnit.NextScheduledFetch.ToString(datetimeFormat))
                 {
                     Console.WriteLine($"Starting execution of the {fetchUnit.UnitName}.");
-                    FetchExecutor fetchExecutor = new FetchExecutor();
-                    await fetchExecutor.ExecuteTask(fetchUnit, DateTime.Now);
+                    await _fetchExecutor.ExecuteTask(fetchUnit, DateTime.Now);
                 }
             }
         }
